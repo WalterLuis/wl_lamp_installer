@@ -80,7 +80,7 @@ fi
 /bin/sudo /bin/echo "  Header always set X-Permitted-Cross-Domain-Policies \"none\"" >> /etc/httpd/conf.vhosts.d/${SERVER_NAME}.conf
 
 /bin/sudo /bin/echo "  Header unset Expect-CT" >> /etc/httpd/conf.vhosts.d/${SERVER_NAME}.conf
-/bin/sudo /bin/echo "  Header always set Expect-CT \"max-age=43200, enforce, report-uri='https://wtyypxwhbcxt3xggratvfwjcfyuzr.report-uri.com/r/d/ct/enforce'\"" >> /etc/httpd/conf.vhosts.d/${SERVER_NAME}.conf
+/bin/sudo /bin/echo "  Header always set Expect-CT \"max-age=43200, enforce\"" >> /etc/httpd/conf.vhosts.d/${SERVER_NAME}.conf
 
 /bin/sudo /bin/echo "  Header unset Referrer-Policy" >> /etc/httpd/conf.vhosts.d/${SERVER_NAME}.conf
 /bin/sudo /bin/echo "  Header always set Referrer-Policy \"no-referrer\"" >> /etc/httpd/conf.vhosts.d/${SERVER_NAME}.conf
