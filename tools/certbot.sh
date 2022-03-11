@@ -17,20 +17,23 @@ fi
 /bin/echo "######   CERTBOT - Letsencrypt"
 /bin/echo "######################################################################################"
 
-select yn in "Generate" "Renew" "nothing";do
+select yn in "Generate" "Renew" "nothing"; do
   case "$yn" in
-    Generate)
-      /bin/echo "working..."
-      METHOD_CERTBOT="Generate"
-    break;;
-    Renew)
-      /bin/echo "working..."
-      METHOD_CERTBOT="Renew"
-    break;;
-    nothing)
-      exit 1
-      return 1
-    break;;
+  Generate)
+    /bin/echo "working..."
+    METHOD_CERTBOT="Generate"
+    break
+    ;;
+  Renew)
+    /bin/echo "working..."
+    METHOD_CERTBOT="Renew"
+    break
+    ;;
+  nothing)
+    exit 1
+    return 1
+    break
+    ;;
   esac
 done
 

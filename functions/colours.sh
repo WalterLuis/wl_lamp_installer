@@ -72,13 +72,14 @@ bghiWhite='\e[0;107m'
 resetColorCMD="/bin/tput sgr0"
 resetColor="\E[m\017"
 
-c/bin/echo () # Coloured-echo.
-              # Argument $1 = font color
-              # Argument $2 = message
-{
+c/bin/echo() {
+  # Coloured-echo
+  # Argument $1 = font color
+  # Argument $2 = message
   color=$1
   message=$2
-  /bin/echo -e "$color$message" ; $resetColorCMD
+  /bin/echo -e "$color$message"
+  $resetColorCMD
   /bin/echo -e "$resetColor"
   return
 }

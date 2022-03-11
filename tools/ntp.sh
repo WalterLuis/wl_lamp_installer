@@ -17,17 +17,20 @@ fi
 /bin/echo "######   NTP"
 /bin/echo "######################################################################################"
 
-select yn in "3.es" "1.europe" "3.europe";do
+select yn in "3.es" "1.europe" "3.europe"; do
   case "$yn" in
-    3.es)
-      NTP_SELECT="3.es"
-    break;;
-    1.europe)
-      NTP_SELECT="1.europe"
-    break;;
-    3.europe)
-      NTP_SELECT="3.europe"
-    break;;
+  3.es)
+    NTP_SELECT="3.es"
+    break
+    ;;
+  1.europe)
+    NTP_SELECT="1.europe"
+    break
+    ;;
+  3.europe)
+    NTP_SELECT="3.europe"
+    break
+    ;;
   esac
 done
 /bin/echo "working..."

@@ -17,26 +17,29 @@ fi
 /bin/echo "###### MariaDB"
 /bin/echo "######################################################################################"
 
-select yn in "MariaDB104" "MariaDB103" "EXIT";do
+select yn in "MariaDB104" "MariaDB103" "EXIT"; do
   case $yn in
-    MariaDB104)
-      /bin/echo "working..."
-      /bin/sudo /bin/echo "MariaDB104" > ${SCRIPT_DIR}/globalVariable/MARIADB_VERSION.txt
-    break;;
-    MariaDB103)
-      /bin/echo "working..."
-      /bin/sudo /bin/echo "MariaDB103" > ${SCRIPT_DIR}/globalVariable/MARIADB_VERSION.txt
-    break;;
-    EXIT)
-      exit 1
-      return 1
-    break;;
+  MariaDB104)
+    /bin/echo "working..."
+    /bin/sudo /bin/echo "MariaDB104" >${SCRIPT_DIR}/globalVariable/MARIADB_VERSION.txt
+    break
+    ;;
+  MariaDB103)
+    /bin/echo "working..."
+    /bin/sudo /bin/echo "MariaDB103" >${SCRIPT_DIR}/globalVariable/MARIADB_VERSION.txt
+    break
+    ;;
+  EXIT)
+    exit 1
+    return 1
+    break
+    ;;
   esac
 done
 
 if rpm -qa | grep -q "MariaDB-server"; then
-  /bin/sudo /bin/yum -y -q --skip-broken remove MariaDB* > /dev/null 2>&1
-  /bin/sudo /bin/rm -Rf /etc/php* >> ${SCRIPT_DIR}/debug.log
+  /bin/sudo /bin/yum -y -q --skip-broken remove MariaDB* >/dev/null 2>&1
+  /bin/sudo /bin/rm -Rf /etc/php* >>${SCRIPT_DIR}/debug.log
 fi
 
 /bin/sudo /bin/sh ${SCRIPT_DIR}/include/mariadb.sh "${SCRIPT_DIR}"

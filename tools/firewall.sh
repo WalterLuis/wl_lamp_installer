@@ -12,18 +12,21 @@ if [[ -z "${SCRIPT_DIR}" ]]; then
   fi
 fi
 
-select yn in "Install_IPtables" "Install_Firewalld" "Disabled_Firewalls";do
+select yn in "Install_IPtables" "Install_Firewalld" "Disabled_Firewalls"; do
   case $yn in
-    Install_IPtables)
+  Install_IPtables)
     FIREWALL="Install_IPtables"
-    break;;
-    Install_Firewalld)
+    break
+    ;;
+  Install_Firewalld)
     FIREWALL="Install_Firewalld"
     sudo systemctl restart firewalld.service
-    break;;
-    *)
+    break
+    ;;
+  *)
     FIREWALL="Disabled_Firewalls"
-    break;;
+    break
+    ;;
   esac
 done
 
@@ -31,7 +34,7 @@ if [[ -z "${FIREWALL}" ]]; then
   FIREWALL="$(/bin/cat ${SCRIPT_DIR}/globalVariable/FIREWALL.txt)"
   /bin/echo "INFO $BASH_SOURCE: FIREWALL"
   if [[ -z "${FIREWALL}" ]]; then
-    /bin/sudo /bin/echo "Install_Firewalld" > ${SCRIPT_DIR}/globalVariable/FIREWALL.txt
+    /bin/sudo /bin/echo "Install_Firewalld" >${SCRIPT_DIR}/globalVariable/FIREWALL.txt
     FIREWALL="$(/bin/cat ${SCRIPT_DIR}/globalVariable/FIREWALL.txt)"
     /bin/echo "WARNING $BASH_SOURCE: FIREWALL - was empty - Assign default: 'Install_Firewalld'"
   fi

@@ -19,14 +19,16 @@ fi
 /bin/echo "######  - Lock login with root by SSH"
 /bin/echo "######################################################################################"
 
-select yn in "yes" "no";do
+select yn in "yes" "no"; do
   case $yn in
-    yes)
-      /bin/sudo /bin/sh ${SCRIPT_DIR}/include/sshd.sh "${SCRIPT_DIR}" "2244"
-    break;;
-    no)
-      exit 1
-      return 1
-    break;;
+  yes)
+    /bin/sudo /bin/sh ${SCRIPT_DIR}/include/sshd.sh "${SCRIPT_DIR}" "2244"
+    break
+    ;;
+  no)
+    exit 1
+    return 1
+    break
+    ;;
   esac
 done

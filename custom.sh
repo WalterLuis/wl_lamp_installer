@@ -3,7 +3,7 @@
 SCRIPT_DIR="$(/bin/cat /root/wl_lemp_lamp/globalVariable/SCRIPT_DIR.txt)"
 if [[ -z "${SCRIPT_DIR}" ]]; then
   SCRIPT_DIR="$(readlink -f $(dirname ${BASH_SOURCE[0]}))"
-  /bin/sudo /bin/echo "${SCRIPT_DIR}" > /root/wl_lemp_lamp/globalVariable/SCRIPT_DIR.txt
+  /bin/sudo /bin/echo "${SCRIPT_DIR}" >/root/wl_lemp_lamp/globalVariable/SCRIPT_DIR.txt
   if [[ -z "${SCRIPT_DIR}" ]]; then
     SCRIPT_DIR="$(/bin/cat /root/wl_lemp_lamp/globalVariable/SCRIPT_DIR.txt)"
     if [[ -z "${SCRIPT_DIR}" ]]; then
@@ -11,7 +11,7 @@ if [[ -z "${SCRIPT_DIR}" ]]; then
       exit 1
       return 1
     else
-      /bin/sudo /bin/echo "${SCRIPT_DIR}" > /root/wl_lemp_lamp/globalVariable/SCRIPT_DIR.txt
+      /bin/sudo /bin/echo "${SCRIPT_DIR}" >/root/wl_lemp_lamp/globalVariable/SCRIPT_DIR.txt
     fi
   fi
 fi

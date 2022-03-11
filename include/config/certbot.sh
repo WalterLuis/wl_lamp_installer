@@ -41,5 +41,5 @@ if [[ ! "$SERVER_NAME_MAIN" =~ "localhost" ]]; then
   pinChain="$(/bin/sudo openssl x509 -in /etc/letsencrypt/live/${SERVER_NAME_MAIN}/chain.pem -pubkey -noout | /bin/sudo openssl rsa -pubin -outform der | /bin/sudo openssl dgst -sha256 -binary | /bin/sudo openssl enc -base64)"
   pinPrivate="$(/bin/sudo openssl rsa -in /etc/letsencrypt/live/${SERVER_NAME_MAIN}/privkey.pem -outform der | /bin/sudo openssl dgst -sha256 -binary | /bin/sudo openssl enc -base64)"
   /bin/sudo /bin/sed -i "s#Header always set Public-Key-Pins .*#Header always set Public-Key-Pins 'pin-sha256=\"${pinCert}\"; pin-sha256=\"${pinChain}\"; pin-sha256=\"${pinPrivate}\"; max-age=7889400; includeSubDomains'#g" "/etc/httpd/conf.vhosts.d/${SERVER_NAME}.conf"
-  /bin/echo "Header always set Public-Key-Pins 'pin-sha256=\"${pinCert}\"; pin-sha256=\"${pinChain}\"; pin-sha256=\"${pinPrivate}\"; max-age=7889400; includeSubDomains'" >> /etc/httpd/Public-Key-Pins.history
+  /bin/echo "Header always set Public-Key-Pins 'pin-sha256=\"${pinCert}\"; pin-sha256=\"${pinChain}\"; pin-sha256=\"${pinPrivate}\"; max-age=7889400; includeSubDomains'" >>/etc/httpd/Public-Key-Pins.history
 fi

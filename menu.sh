@@ -4,7 +4,7 @@
 /bin/echo "####  MENU v3.2  ####"
 /bin/echo "#####################"
 
-/bin/yum -y -q --skip-broken install sudo > /dev/null 2>&1
+/bin/yum -y -q --skip-broken install sudo >/dev/null 2>&1
 
 # Check root
 if [ "$EUID" -ne 0 ]; then
@@ -13,7 +13,7 @@ if [ "$EUID" -ne 0 ]; then
   return 1
 fi
 
-/bin/sudo /bin/yum -y -q --skip-broken install grep rpm /bin/cat /bin/sed gawk bind-utils net-tools > /dev/null 2>&1
+/bin/sudo /bin/yum -y -q --skip-broken install grep rpm /bin/cat /bin/sed gawk bind-utils net-tools >/dev/null 2>&1
 
 SCRIPT_DIR="$(readlink -f $(dirname ${BASH_SOURCE[0]}))"
 if [[ -z "${SCRIPT_DIR}" ]]; then
@@ -25,9 +25,9 @@ if [[ -z "${SCRIPT_DIR}" ]]; then
   fi
 fi
 
-/bin/sudo /bin/echo "#" > ${SCRIPT_DIR}/debug.log
+/bin/sudo /bin/echo "#" >${SCRIPT_DIR}/debug.log
 
-/bin/sudo /bin/echo "${SCRIPT_DIR}" > /root/wl_lemp_lamp/globalVariable/SCRIPT_DIR.txt
+/bin/sudo /bin/echo "${SCRIPT_DIR}" >/root/wl_lemp_lamp/globalVariable/SCRIPT_DIR.txt
 
 source "${SCRIPT_DIR}/inc.sh"
 
@@ -46,7 +46,7 @@ FG_WHITE="$(/bin/tput setaf 7)"
 while [[ $REPLY != 0 ]]; do
   /bin/echo -n ${BG_BLUE}${FG_WHITE}
   /bin/clear
-  /bin/cat <<- _EOF_
+  /bin/cat <<-_EOF_
 
   Please Select:
 
@@ -76,45 +76,59 @@ _EOF_
   /bin/tput cup 21 0
   # Act on selection
   case $selection in
-    [Aa]) /bin/echo "working..."
-      /bin/sudo /bin/sh ${SCRIPT_DIR}/unattended/LAMP.sh "${SCRIPT_DIR}"
+  [Aa])
+    /bin/echo "working..."
+    /bin/sudo /bin/sh ${SCRIPT_DIR}/unattended/LAMP.sh "${SCRIPT_DIR}"
     ;;
-    [Bb]) /bin/echo "comming soon..."
-      /bin/sudo /bin/sh ${SCRIPT_DIR}/unattended/LEMP.sh "${SCRIPT_DIR}"
+  [Bb])
+    /bin/echo "comming soon..."
+    /bin/sudo /bin/sh ${SCRIPT_DIR}/unattended/LEMP.sh "${SCRIPT_DIR}"
     ;;
-    1) /bin/echo "working..."
-      /bin/sudo /bin/sh ${SCRIPT_DIR}/tools/apache.sh "${SCRIPT_DIR}"
+  1)
+    /bin/echo "working..."
+    /bin/sudo /bin/sh ${SCRIPT_DIR}/tools/apache.sh "${SCRIPT_DIR}"
     ;;
-    2) /bin/echo "comming soon..."
-      /bin/sudo /bin/sh ${SCRIPT_DIR}/tools/ngix.sh "${SCRIPT_DIR}"
+  2)
+    /bin/echo "comming soon..."
+    /bin/sudo /bin/sh ${SCRIPT_DIR}/tools/ngix.sh "${SCRIPT_DIR}"
     ;;
-    3) /bin/echo "working..."
-      /bin/sudo /bin/sh ${SCRIPT_DIR}/tools/php.sh "${SCRIPT_DIR}"
+  3)
+    /bin/echo "working..."
+    /bin/sudo /bin/sh ${SCRIPT_DIR}/tools/php.sh "${SCRIPT_DIR}"
     ;;
-    4) /bin/echo "working..."
-      /bin/sudo /bin/sh ${SCRIPT_DIR}/tools/mariadb.sh "${SCRIPT_DIR}"
+  4)
+    /bin/echo "working..."
+    /bin/sudo /bin/sh ${SCRIPT_DIR}/tools/mariadb.sh "${SCRIPT_DIR}"
     ;;
-    5) /bin/echo "comming soon..."
-      /bin/sudo /bin/sh ${SCRIPT_DIR}/tools/certbot.sh "${SCRIPT_DIR}"
+  5)
+    /bin/echo "comming soon..."
+    /bin/sudo /bin/sh ${SCRIPT_DIR}/tools/certbot.sh "${SCRIPT_DIR}"
     ;;
-    6) /bin/echo "working..."
-      /bin/sudo /bin/sh ${SCRIPT_DIR}/tools/ntp.sh "${SCRIPT_DIR}"
+  6)
+    /bin/echo "working..."
+    /bin/sudo /bin/sh ${SCRIPT_DIR}/tools/ntp.sh "${SCRIPT_DIR}"
     ;;
-    10) /bin/echo "comming soon..."
-      /bin/sudo /bin/sh ${SCRIPT_DIR}/extras/webmin.sh "${SCRIPT_DIR}"
+  10)
+    /bin/echo "comming soon..."
+    /bin/sudo /bin/sh ${SCRIPT_DIR}/extras/webmin.sh "${SCRIPT_DIR}"
     ;;
-    11) /bin/echo "comming soon..."
-      /bin/sudo /bin/sh ${SCRIPT_DIR}/extras/git.sh "${SCRIPT_DIR}"
+  11)
+    /bin/echo "comming soon..."
+    /bin/sudo /bin/sh ${SCRIPT_DIR}/extras/git.sh "${SCRIPT_DIR}"
     ;;
-    12) /bin/echo "comming soon..."
-      /bin/sudo /bin/sh ${SCRIPT_DIR}/extras/mongodb.sh "${SCRIPT_DIR}"
+  12)
+    /bin/echo "comming soon..."
+    /bin/sudo /bin/sh ${SCRIPT_DIR}/extras/mongodb.sh "${SCRIPT_DIR}"
     ;;
-    13) /bin/echo "comming soon..."
-      /bin/sudo /bin/sh ${SCRIPT_DIR}/extras/node.sh "${SCRIPT_DIR}"
+  13)
+    /bin/echo "comming soon..."
+    /bin/sudo /bin/sh ${SCRIPT_DIR}/extras/node.sh "${SCRIPT_DIR}"
     ;;
-    0) break
+  0)
+    break
     ;;
-    *) /bin/echo "Invalid entry."
+  *)
+    /bin/echo "Invalid entry."
     ;;
   esac
   /bin/printf "\n\nPress any key to continue."

@@ -152,7 +152,7 @@ fi
 /bin/sudo /bin/sed -i".clean_backup" '/;.*/d' /etc/php.ini
 /bin/sudo /bin/sed -i".clean_backup" '/^$/d' /etc/php.ini
 /bin/sudo /bin/sed -i".clean_backup" '/./!d' /etc/php.ini
-/bin/sudo /bin/rm -f /etc/php.ini.clean_backup >> ${SCRIPT_DIR}/debug.log
+/bin/sudo /bin/rm -f /etc/php.ini.clean_backup >>${SCRIPT_DIR}/debug.log
 
 # /etc/php.d/10-opcache.ini
 if [ ! -f /etc/php.d/10-opcache.ini.itop_backup_first ]; then
@@ -200,7 +200,7 @@ fi
 /bin/sudo /bin/sed -i".clean_backup" '/;.*/d' /etc/php.d/10-opcache.ini
 /bin/sudo /bin/sed -i".clean_backup" '/^$/d' /etc/php.d/10-opcache.ini
 /bin/sudo /bin/sed -i".clean_backup" '/./!d' /etc/php.d/10-opcache.ini
-/bin/sudo /bin/rm -f /etc/php.d/10-opcache.ini.clean_backup >> ${SCRIPT_DIR}/debug.log
+/bin/sudo /bin/rm -f /etc/php.d/10-opcache.ini.clean_backup >>${SCRIPT_DIR}/debug.log
 
 # /etc/php.d/40-apcu.ini
 if [ ! -f /etc/php.d/40-apcu.ini.itop_backup_first ]; then
@@ -236,18 +236,18 @@ fi
 /bin/sudo /bin/sed -i".clean_backup" '/;.*/d' /etc/php.d/40-apcu.ini
 /bin/sudo /bin/sed -i".clean_backup" '/^$/d' /etc/php.d/40-apcu.ini
 /bin/sudo /bin/sed -i".clean_backup" '/./!d' /etc/php.d/40-apcu.ini
-/bin/sudo /bin/rm -f /etc/php.d/40-apcu.ini.clean_backup >> ${SCRIPT_DIR}/debug.log
+/bin/sudo /bin/rm -f /etc/php.d/40-apcu.ini.clean_backup >>${SCRIPT_DIR}/debug.log
 
 if ! rpm -qa | grep -q "wget"; then
-  /bin/sudo /bin/yum -y -q --skip-broken install wget > /dev/null 2>&1
+  /bin/sudo /bin/yum -y -q --skip-broken install wget >/dev/null 2>&1
 fi
-/bin/sudo wget -q https://browscap.org/stream?q=Full_PHP_BrowsCapINI -O full_php_browscap.ini >> ${SCRIPT_DIR}/debug.log
+/bin/sudo wget -q https://browscap.org/stream?q=Full_PHP_BrowsCapINI -O full_php_browscap.ini >>${SCRIPT_DIR}/debug.log
 if [ ! -d /etc/httpd/php-plugins ]; then
-  /bin/sudo mkdir /etc/httpd/php-plugins >> ${SCRIPT_DIR}/debug.log
+  /bin/sudo mkdir /etc/httpd/php-plugins >>${SCRIPT_DIR}/debug.log
 fi
-/bin/sudo /bin/rm -Rf /etc/httpd/php-plugins/* >> ${SCRIPT_DIR}/debug.log
+/bin/sudo /bin/rm -Rf /etc/httpd/php-plugins/* >>${SCRIPT_DIR}/debug.log
 /bin/sudo /bin/mv -f full_php_browscap.ini /etc/httpd/php-plugins/full_php_browscap.ini
 /bin/sudo /bin/sed -i 's/;browscap=.*/browscap=\/etc\/httpd\/php-plugins\/full_php_browscap.ini/g' /etc/php.ini
 /bin/sudo chown apache:apache /etc/httpd/php-plugins/full_php_browscap.ini
 
-/bin/sudo /bin/echo 'disable_functions="shell_exec,exec,system,passthru"' > /etc/php.d/99-security.ini
+/bin/sudo /bin/echo 'disable_functions="shell_exec,exec,system,passthru"' >/etc/php.d/99-security.ini
