@@ -1,13 +1,13 @@
-# <span style="color:red">DEPRECATED - CURRENTLY NOT WORKING!</span>
+# <span style="color: red;">DEPRECATED - CURRENTLY NOT WORKING!</span>
 
-# Opcional - pre-install for "VirtualBox Guest Additions"
+## Opcional - pre-install for "VirtualBox Guest Additions"
 
     /bin/sudo yum -y groupinstall "Development Tools"
     /bin/sudo mkdir -p /media/cdrom/
     /bin/sudo mount /dev/cdrom /media/cdrom/
     /bin/sudo KERN_DIR=/usr/src/kernels/3.??.?-???.??.?.???.x86_64/ sh /media/cdrom/VBoxLinuxAdditions.run
 
-# Start menu
+## Start menu
 
     /bin/sudo yum -y -q install git
     /bin/sudo rm -Rf wl_lemp_lamp
@@ -16,11 +16,12 @@
     /bin/sudo chmod 777 wl_lemp_lamp/*
     /bin/sudo sh wl_lemp_lamp/menu.sh
 
-# Permission apache
+## Permission apache
 
     /bin/sudo chown -hR apache:apache /var/www/*
 
-# <<<<< NOTES >>>>>
+## <<<<< NOTES >>>>>
+
 ### RPM: Install
 
     /bin/sudo rpm -ivh --replacepkgs <url_from: https://www.rpmfind.net>
